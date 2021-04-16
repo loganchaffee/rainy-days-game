@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282b2e;
+}
+.wrapper {
+    text-align: center;
+    border: 3px solid 	#455566;
+    width: 550px;
+    height: 550px;
+}
+canvas {
+    background: #3e4954;
+}
