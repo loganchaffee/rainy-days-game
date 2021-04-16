@@ -6,7 +6,7 @@ Space Invaders-type game built with javascript.
 Shoot the clouds. Dodge their lightning bolts.
 
 ### Controls:
-a: left
-d: right
-space: jump
-click: shoot
+* Left: A
+* Right: D
+* Jump: Space Bar
+* Shoot: Left Click
