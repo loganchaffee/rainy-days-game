@@ -26,7 +26,10 @@ let controller = {
     },
     clickEventListener: function (event) {
         let projectile = new Projectile(player.x + 15, player.y, 6, -10)
-        projectiles.push(projectile)
+        if (projectiles.length < 1) {
+            projectiles.push(projectile)
+        }
+        
     }
 }
 // --------------------------------------------------------------------------
@@ -48,17 +51,17 @@ class Player {
     }
     update(){
         if (controller.up && player.jumping == false) {
-            this.yVelocity -= 40
+            this.yVelocity -= 20
             this.jumping = true
         }
         if (controller.left) {
-            this.xVelocity -= 1.3;
+            this.xVelocity -= 1;
         }
         if (controller.right) {
-            this.xVelocity += 1.;
+            this.xVelocity += 1;
         }
 
-        this.yVelocity += 2 // gravity (always moving player down)
+        this.yVelocity += 1 // gravity (always moving player down)
         this.x += this.xVelocity
         this.y += this.yVelocity
         this.xVelocity *= .9 //friction (always slowing the player down)
@@ -135,6 +138,29 @@ class Enemy {
 
 // -------------------------------------------------------------------------
 
+class EnemyProjectile {
+    constructor(x, y, radius, yVelocity) {
+        this.x = x
+        this.y = y
+        this.radius = radius
+        this.yVelocity = yVelocity
+    }
+
+    draw() {
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+        ctx.fillStyle = 'red'
+        ctx.fill()
+    }
+
+    update() {
+        this.draw()
+        this.y += this.yVelocity
+    }
+}
+
+// -------------------------------------------------------------------------
+
 // Event Listeners
 window.addEventListener('keydown', controller.keyEventListener)
 window.addEventListener('keyup', controller.keyEventListener)
@@ -142,6 +168,7 @@ window.addEventListener('click', controller.clickEventListener)
 
 // Class Instances
 let player = new Player(canvas.width / 2 - 25, canvas.height - 50, 30, 30, 0, 0, true)
+let projectiles = []
 
 let enemyVelocity = .5
 let enemies = [
@@ -166,9 +193,15 @@ let enemies = [
     new Enemy(425, 75, 12.5, enemyVelocity, .05, 'right'),
 ]
 
+let enemyProjectiles = []
 
-let projectiles = []
-let projectile = new Projectile(player.x + 15, player.y, 6, -20)
+setInterval(function enemyShoots(enemy) {
+    enemy = enemies[Math.floor(Math.random() * enemies.length)]
+    let projectile = new EnemyProjectile(enemy.x, enemy.y + 20, 6, 2)
+    enemyProjectiles.push(projectile)
+}, 1000);
+
+
 
 // -------------------------------------------------------------------------
 
@@ -184,6 +217,16 @@ let animate = function () {
         if (projectile.y < 0) {
             setTimeout(() => {
                 projectiles.splice(index, 1)
+            }, 0);
+        }
+    })
+
+    enemyProjectiles.forEach((projectile, index) => {
+        projectile.update()
+        // remove projectiles from edges of screen
+        if (projectile.y > 550) {
+            setTimeout(() => {
+                enemyProjectiles.splice(index, 1)
             }, 0);
         }
     })
@@ -214,9 +257,26 @@ let animate = function () {
         });
     })
 
-    if (enemies.length === 0) {
-        alert('Game Over')
-    }
+    enemyProjectiles.forEach(enemyProjectile => {
+        function playerProjectileColliding(enemyProjectile, player) {
+            let distX = Math.abs(enemyProjectile.x - player.x - player.width / 2);
+            let distY = Math.abs(enemyProjectile.y - player.y - player.height / 2);
+
+            if (distX > (player.width / 2 + enemyProjectile.radius)) { return false; }
+            if (distY > (player.height / 2 + enemyProjectile.radius)) { return false; }
+
+            if (distX <= (player.width / 2 - 7)) { return true; }
+            if (distY <= (player.height / 2 - 8)) { return true; }
+
+            let dx = distX - player.width / 2;
+            let dy = distY - player.height / 2;
+            return (dx * dx + dy * dy <= (enemyProjectile.radius * enemyProjectile.radius));
+        }
+        if (playerProjectileColliding(enemyProjectile, player)) {
+            alert('player hit');
+        }
+    });
+
 
 
     window.requestAnimationFrame(animate)
