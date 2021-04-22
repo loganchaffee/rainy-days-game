@@ -11,5 +11,9 @@ body{
     height: 550px;
 }
 canvas {
-    background: #3e4954;
+    background: url(1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg);
+}
+
+img {
+    display: none;
 }

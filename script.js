@@ -1,5 +1,6 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
+let playerImage = document.getElementById('playerImage')
 
 let controller = {
     left: false,
@@ -33,6 +34,11 @@ let controller = {
     }
 }
 // --------------------------------------------------------------------------
+
+
+
+
+
 class Player {
     constructor(x, y, width, height, xVelocity, yVelocity, jumping) {
         this.x = x
@@ -45,9 +51,23 @@ class Player {
     }   
     draw(){
         ctx.beginPath()
-        ctx.fillStyle = '#964000'
+        ctx.fillStyle = 'darkgreen'
+        ctx.rect(0, 550, 550, -30)
+        ctx.fill()
+        
+        ctx.beginPath()
+        ctx.fillStyle = 'transparent'
         ctx.rect(this.x, this.y, this.width, this.height)
         ctx.fill()
+        
+
+        ctx.drawImage(
+            playerImage,
+            0, 0,
+            96, 128,
+            this.x - 8, this.y - 19,
+            56, 70
+        )
     }
     update(){
         if (controller.up && player.jumping == false) {
@@ -68,9 +88,9 @@ class Player {
         this.yVelocity *= .9 //friction (always slowing the player down)
 
         //if player if lowering through the floor
-        if (this.y > canvas.height - 25 - 25) {
+        if (this.y > canvas.height - 25 - 50) {
             this.jumping = false
-            this.y = canvas.height - 25 - 25
+            this.y = canvas.height - 25 - 40
             this.yVelocity = 0 // downward movement must be 0, or player can't jumping right
         }
         if (this.x < -50) { // if player is going off the left
@@ -121,8 +141,12 @@ class Enemy {
     draw(){
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        ctx.fillStyle = 'white'
+        ctx.fillStyle = 'transparent'
         ctx.fill()
+
+
+        let enemyImage = document.getElementById('enemyImage')
+        ctx.drawImage(enemyImage, this.x - 19, this.y - 20, 40, 40)
     }
     update(){
         this.draw()
@@ -167,30 +191,30 @@ window.addEventListener('keyup', controller.keyEventListener)
 window.addEventListener('click', controller.clickEventListener)
 
 // Class Instances
-let player = new Player(canvas.width / 2 - 25, canvas.height - 50, 30, 30, 0, 0, true)
+let player = new Player(canvas.width / 2 - 25, canvas.height - 100, 40, 50, 0, 0, true)
 let projectiles = []
 
 let enemyVelocity = .5
 let enemies = [
-    new Enemy(25, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(75, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(125, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(175, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(225, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(275, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(325, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(375, 25, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(425, 25, 12.5, enemyVelocity, .05, 'right'),
+    new Enemy(25, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(75, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(125, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(175, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(225, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(275, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(325, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(375, 25, 20, enemyVelocity, .05, 'right'),
+    new Enemy(425, 25, 20, enemyVelocity, .05, 'right'),
 
-    new Enemy(25, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(75, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(125, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(175, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(225, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(275, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(325, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(375, 75, 12.5, enemyVelocity, .05, 'right'),
-    new Enemy(425, 75, 12.5, enemyVelocity, .05, 'right'),
+    new Enemy(25, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(75, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(125, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(175, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(225, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(275, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(325, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(375, 75, 20, enemyVelocity, .05, 'right'),
+    new Enemy(425, 75, 20, enemyVelocity, .05, 'right'),
 ]
 
 let enemyProjectiles = []
@@ -273,7 +297,7 @@ let animate = function () {
             return (dx * dx + dy * dy <= (enemyProjectile.radius * enemyProjectile.radius));
         }
         if (playerProjectileColliding(enemyProjectile, player)) {
-            alert('player hit');
+            // alert('player hit');
         }
     });
 
