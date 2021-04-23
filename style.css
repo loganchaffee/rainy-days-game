@@ -1,3 +1,7 @@
+* {
+    font-family: 'Play', sans-serif;
+}
+
 body{
     display: flex;
     align-items: center;
@@ -16,4 +20,270 @@ canvas {
 
 img {
     display: none;
+}
+
+/* Start Menu */
+
+.start-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 350px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#title{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: black;
+    font-size: 50px;
+    margin: 0;
+}
+
+.start-menu__item {
+    width: 100%;
+    height: 10%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-menu__item h1 {
+    background: rgb(54, 18, 100);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: white;
+    margin: 40px 0;
+}
+
+.start-menu__item h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.menu-button {
+    cursor: pointer;
+    background: rgb(54, 18, 100);
+    text-decoration: none;
+    border: none;
+    outline: none;
+    width: 70%;
+    height: 100%;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+/* How To Menu */
+
+.how-to-menu {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 350px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.how-to-menu__header {
+    background: rgb(54, 18, 100);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: white;
+}
+
+.how-to-menu-body1 {
+    width: 90%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.how-to-menu-body2 {
+    width: 90%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.how-to-menu-body2 ul{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.how-to-menu-body2 ul li {
+    margin: 8px 0px;
+}
+
+#howToMenuBackBtn {
+    width: 50%;
+}
+
+/* Login Menu */
+
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 350px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login__form h1 {
+    background: rgb(54, 18, 100);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.login__form__item {
+    width: 80%;
+    margin: 10px 0;
+}
+
+#loginBackBtn {
+    cursor: pointer;
+    background: rgb(54, 18, 100);
+    text-decoration: none;
+    border: none;
+    outline: none;
+    width: 50%;
+    height: 25px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    margin-top: 60px;
+    justify-self: center;
+}
+
+/* Game Over Menu */
+
+.game-over-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 350px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over-menu__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over-menu__item h1 {
+    background: rgb(54, 18, 100);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: white;
+}
+
+.game-over-menu__item h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.game-over-menu__item__btn {
+    cursor: pointer;
+    background: rgb(54, 18, 100);
+    text-decoration: none;
+    border: none;
+    outline: none;
+    width: 50%;
+    height: 25px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    margin: 5px 0;
+    align-self: center;
+}
+
+#game-over-text {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: rgb(54, 18, 100);
+    font-size: 50px;
+    margin: 5px 0 20px 0;
 }
