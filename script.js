@@ -1,12 +1,11 @@
 // Global Variables
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
-let playerImage = document.getElementById('playerImage')
 
 
 // Class Instances -----------------------------------------------------------
 
-let player = new Player(canvas.width / 2 - 25, canvas.height - 100, 40, 50, 0, 0, true)
+let player = new Player(canvas.width / 2 - 25, canvas.height - 75, 40, 50, 0, 0, true)
 
 let projectiles = []
 
@@ -42,10 +41,10 @@ setInterval(function enemyShoots(enemy) {
     enemyProjectiles.push(projectile)
 }, 1000);
 
-
 // Game Loop-----------------------------------------------------------------
 
 let animate = function () {
+    
     ctx.clearRect(0,0,600,600)
     
     player.update()// Renders Player
@@ -115,8 +114,6 @@ let animate = function () {
             // alert('player hit');
         }
     });
-
-
 
     window.requestAnimationFrame(animate)
 }

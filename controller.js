@@ -26,7 +26,6 @@ let controller = {
         if (projectiles.length < 1) {
             projectiles.push(projectile)
         }
-
     }
 }
 

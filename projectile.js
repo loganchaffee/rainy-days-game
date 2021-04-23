@@ -9,7 +9,7 @@ class Projectile {
     draw() {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        ctx.fillStyle = 'white'
+        ctx.fillStyle = '#fc9601'
         ctx.fill()
     }
 
@@ -30,7 +30,7 @@ class EnemyProjectile {
     draw() {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        ctx.fillStyle = 'red'
+        ctx.fillStyle = '#5dc1ffec'
         ctx.fill()
     }
 
