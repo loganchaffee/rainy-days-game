@@ -28,12 +28,12 @@ let controller = {
         let firstShot = {}
         if (playersFirstShot.length < 2) {
             playersFirstShot.push(firstShot)
-            console.log(playersFirstShot);
         }
         if (playersFirstShot.length >= 2) {
             let projectile = new Projectile(player.x + 15, player.y, 6, -10)
             if (projectiles.length < 1) {
                 projectiles.push(projectile)
+                shootSound()
             }
         }
     }

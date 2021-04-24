@@ -106,6 +106,7 @@ class Player {
         if (controller.up && player.jumping == false) {
             this.yVelocity -= 20
             this.jumping = true
+            jumpSound()
         }
         if (controller.left) {
             this.xVelocity -= .7;
