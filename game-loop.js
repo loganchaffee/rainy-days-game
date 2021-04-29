@@ -1,5 +1,6 @@
 // Game Loop-----------------------------------------------------------------
 
+
 let animationId
 let animate = function () {
     animationId = requestAnimationFrame(animate)
@@ -71,6 +72,7 @@ let animate = function () {
             gameOverSound();
             gameOverMenu.style.display = ''
             playerScore.innerHTML = score
+            getHighScore()
             score = 0
             enemyProjectileVelocity = 6
             enemyProjectileFrequency = 500
@@ -97,6 +99,7 @@ let animate = function () {
             gameOverSound()
             gameOverMenu.style.display = ''
             playerScore.innerHTML = score
+            getHighScore()
             score = 0
             enemyProjectileVelocity = 6
             enemyProjectileFrequency = 500
@@ -106,6 +109,7 @@ let animate = function () {
             gameOverSound()
             gameOverMenu.style.display = ''
             playerScore.innerHTML = score
+            getHighScore()
             score = 0
             enemyProjectileVelocity = 6
             enemyProjectileFrequency = 500
@@ -113,7 +117,7 @@ let animate = function () {
     });
 
 
-    // If the player wins
+    // If the player wins a round
     if (enemies.length === 0) {
         createEnemies()
         enemyProjectileVelocity = enemyProjectileVelocity + 1
