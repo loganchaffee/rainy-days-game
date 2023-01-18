@@ -1,8 +1,13 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs/promises');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+/* -------------------------------- Middleware ------------------------------- */
+
+app.use(bodyParser.json());
 
 /* --------------------------------- Static --------------------------------- */
 
@@ -26,9 +31,31 @@ app.get('/', async (req, res) => {
 
 app.get('/scores', async (req, res) => {
     try {
-        let data = await fs.readFile(__dirname + '/resources/high-scores.json', { encoding: 'utf8' });
+        const data = JSON.parse(await fs.readFile(__dirname + '/resources/high-scores.json'));
 
-        data = JSON.parse(data);
+        res.status(200).json(data);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+});
+
+app.post('/scores', async (req, res) => {
+    try {
+        const entry = req.body;
+
+        const data = JSON.parse(await fs.readFile(__dirname + '/resources/high-scores.json'));
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].score < entry.score) {
+                console.log('writing new scores');
+
+                data.splice(i, 0, entry);
+                data.pop();
+                await fs.writeFile(__dirname + '/resources/high-scores.json', JSON.stringify(data));
+                break;
+            }
+        }
 
         res.status(200).json(data);
     } catch (error) {

@@ -14,3 +14,19 @@
         document.getElementById(`${i + 1}-initials`).innerHTML = initials;
     }
 })();
+
+async function updateScores(score, initials) {
+    try {
+        const res = await fetch('/scores', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ score, initials }),
+        });
+
+        const data = await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+updateScores(2549, 'LMC');
