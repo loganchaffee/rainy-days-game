@@ -1,151 +1,146 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainy Days</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rainy Days</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/resources/styles" />
+    </head>
 
-<body>
+    <body>
+        <header>
+            <div class="header">
+                <h1>Rainy Days</h1>
+                <audio controls loop id="music" src="./audio/rainydays.m4a"></audio>
 
-    <header>
-        <div class="header">
-            <h1>Rainy Days</h1>
-            <audio controls loop id="music" src="./audio/rainydays.m4a"></audio>
-
-            <div class="stats">
-                <span>Wave: <span id="waveCount">0</span></span>
-                <span>Score: <span id="scoreCount">0</span></span>
+                <div class="stats">
+                    <span>Wave: <span id="waveCount">0</span></span>
+                    <span>Score: <span id="scoreCount">0</span></span>
+                </div>
             </div>
+        </header>
+
+        <div style="display: flex; justify-content: center">
+            <main>
+                <div class="wrapper">
+                    <canvas width="550px" height="550px" style="background-image: url(/resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg)"></canvas>
+
+                    <div id="startMenu" class="start-menu">
+                        <h2 id="title">Let's Play</h2>
+                        <div class="start-menu__item">
+                            <button id="startGameBtn" class="menu-button">Start Game</button>
+                        </div>
+                        <div class="start-menu__item">
+                            <button id="howToBtn" class="menu-button">How to Play</button>
+                        </div>
+                        <div class="start-menu__item">
+                            <h1>Your High Score:</h1>
+                        </div>
+                        <div class="start-menu__item">
+                            <h2 id="startHighScore"></h2>
+                        </div>
+                    </div>
+
+                    <div id="gameOverMenu" class="game-over-menu">
+                        <div class="game-over-menu__item">
+                            <h2 id="game-over-text">Game Over</h2>
+                            <h1 class="start-menu__item__score-header">Your Score:</h1>
+                            <h3 id="playerScore" class="start-menu__item__score"></h3>
+                        </div>
+                        <div class="game-over-menu__item">
+                            <h1>Your High Score:</h1>
+                            <h3 id="gameOverHighScore"></h3>
+                        </div>
+                        <div class="game-over-menu__item">
+                            <button id="playAgainBtn" class="game-over-menu__item__btn">Play Again</button>
+                        </div>
+                        <div class="game-over-menu__item">
+                            <button id="gameOverMenuBackBtn" class="game-over-menu__item__btn">Back Home</button>
+                        </div>
+                    </div>
+
+                    <div id="howToMenu" class="how-to-menu">
+                        <div class="how-to-menu__header">
+                            <h1>Objective</h1>
+                        </div>
+                        <div class="how-to-menu-body1">
+                            <p>
+                                Once again the clouds have come ruin your day. Don't let them! Dodge their rain drops and shoot them with your sunshine orbs to take them out. Bring back the sunshine!
+                            </p>
+                        </div>
+                        <div class="how-to-menu__header">
+                            <h1>Controls</h1>
+                        </div>
+                        <div class="how-to-menu-body2">
+                            <ul>
+                                <li>Left: <b>A</b></li>
+                                <li>Right: <b>D</b></li>
+                                <li>Jump: <b>Space</b></li>
+                                <li>Shoot: <b>Left Click</b></li>
+                            </ul>
+                        </div>
+                        <div class="how-to-menu-body2">
+                            <button id="howToMenuBackBtn" class="menu-button">Back</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="leader-board">
+                    <h2>Rainy Days Top Players</h2>
+                    <table id="players">
+                        <tr>
+                            <th><img src="/resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg" /></th>
+                            <th>Score</th>
+                            <th>Initial</th>
+                        </tr>
+                        <tr>
+                            <td>1st</td>
+                            <td id="1-score">5000</td>
+                            <td id="1-initials">L.C.</td>
+                        </tr>
+                        <tr>
+                            <td>2nd</td>
+                            <td id="2-score">5000</td>
+                            <td id="2-initials">L.C.</td>
+                        </tr>
+                        <tr>
+                            <td>3rd</td>
+                            <td id="3-score">5000</td>
+                            <td id="3-initials">L.C.</td>
+                        </tr>
+                        <tr>
+                            <td>4th</td>
+                            <td id="4-score">5000</td>
+                            <td id="4-initials">L.C.</td>
+                        </tr>
+                        <tr>
+                            <td>5th</td>
+                            <td id="5-score">5000</td>
+                            <td id="5-initials">L.C.</td>
+                        </tr>
+                    </table>
+                </div>
+            </main>
         </div>
-    </header>
 
-    <div style='display: flex; justify-content: center; '>
-        <main>
-            <div class="wrapper">
-                <canvas width="550px" height="550px" style="background-image: url(/resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg)"></canvas>
-        
-                <div id="startMenu" class="start-menu">
-                    <h2 id="title">Let's Play</h2>
-                    <div class="start-menu__item">
-                        <button id="startGameBtn" class="menu-button">Start Game</button>
-                    </div>
-                    <!-- <div class="start-menu__item">
-                        <button id="loginBtn" class="menu-button">Login</button>
-                    </div> -->
-                    <div class="start-menu__item">
-                        <button id="howToBtn" class="menu-button">How to Play</button>
-                    </div>
-                    <div class="start-menu__item">
-                        <h1>Your High Score:</h1>
-                    </div>
-                    <div class="start-menu__item">
-                        <h2 id="startHighScore"></h2>
-                    </div>
-                </div>
-        
-                <div id="gameOverMenu" class="game-over-menu">
-                    <div class="game-over-menu__item">
-                        <h2 id="game-over-text">Game Over</h2>
-                        <h1 class="start-menu__item__score-header">Your Score:</h1>
-                        <h3 id="playerScore" class="start-menu__item__score"></h3>
-                    </div>
-                    <div class="game-over-menu__item">
-                        <h1>Your High Score:</h1>
-                        <h3 id="gameOverHighScore"></h3>
-                    </div>
-                    <div class="game-over-menu__item">
-                        <button id="playAgainBtn" class="game-over-menu__item__btn">Play Again</button>
-                    </div>
-                    <div class="game-over-menu__item">
-                        <button id="gameOverMenuBackBtn" class="game-over-menu__item__btn">Back Home</button>
-                    </div>
-                </div>
-        
-                <div id="howToMenu" class="how-to-menu">
-                    <div class="how-to-menu__header">
-                        <h1>Objective</h1>
-                    </div>
-                    <div class="how-to-menu-body1">
-                        <p>Once again the clouds have come ruin your day. Don't let them! Dodge their rain drops and shoot them with your sunshine orbs to take them out. Bring back the sunshine!</p>
-                    </div>
-                    <div class="how-to-menu__header">
-                        <h1>Controls</h1>
-                    </div>
-                    <div class="how-to-menu-body2">
-                        <ul>
-                            <li>Left: <b>A</b></li>
-                            <li>Right: <b>D</b> </li>
-                            <li>Jump: <b>Space</b></li>
-                            <li>Shoot: <b>Left Click</b></li>
-                        </ul>
-                    </div>
-                    <div class="how-to-menu-body2">
-                        <button id="howToMenuBackBtn" class="menu-button">Back</button>
-                    </div>
-                </div>
-            </div>
-            <div class="leader-board">
-                <h2>Rainy Days Top Players</h2>
-                <table id="players">
-                    <tr>
-                        <th><img src="/resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg" ></th>
-                        <th>Score</th>
-                        <th>Initial</th>
-                    </tr>
-                    <tr>
-                        <td>1st</td>
-                        <td id="1-score">5000</td>
-                        <td id="1-initials">L.C.</td>
-                    </tr>
-                    <tr>
-                        <td>2nd</td>
-                        <td id="2-score">5000</td>
-                        <td id="2-initials">L.C.</td>
-                    </tr>
-                    <tr>
-                        <td>3rd</td>
-                        <td id="3-score">5000</td>
-                        <td id="3-initials">L.C.</td>
-                    </tr>
-                    <tr>
-                        <td>4th</td>
-                        <td id="4-score">5000</td>
-                        <td id="4-initials">L.C.</td>
-                    </tr>
-                    <tr>
-                        <td>5th</td>
-                        <td id="5-score">5000</td>
-                        <td id="5-initials">L.C.</td>
-                    </tr>
-                </table>
-            </div>
-        </main>
-    </div>
-    
+        <!-- ------------------------------------------------------------------ -->
+        <img id="playerImage" src="./resources/character_maleAdventurer_sheet.png" alt="" />
+        <img id="playerImage2" src="./resources/character_maleAdventurer_sheet-mirror.png" alt="" />
+        <img id="enemyImage" src="resources/cloud2.png" alt="" />
 
+        <!-- ------------------------------------------------------------------ -->
+        <audio id="shoot" src="./audio/shoot.wav"></audio>
+        <audio id="gameover" src="./audio/gameover.wav"></audio>
+        <audio id="punch" src="./audio/punch.wav"></audio>
+        <audio id="jump" src="./audio/jump.wav"></audio>
 
-    <!-- ------------------------------------------------------------------ -->
-    <img id="playerImage" src="./resources/character_maleAdventurer_sheet.png" alt="">
-    <img id="playerImage2" src="./resources/character_maleAdventurer_sheet-mirror.png" alt="">
-    <img id="enemyImage" src="resources/cloud2.png" alt="">
-    
-    <!-- ------------------------------------------------------------------ -->
-    <audio id="shoot" src="./audio/shoot.wav"></audio>
-    <audio id="gameover" src="./audio/gameover.wav"></audio>
-    <audio id="punch" src="./audio/punch.wav"></audio>
-    <audio id="jump" src="./audio/jump.wav"></audio>
-    
-    <!-- ------------------------------------------------------------------ -->
-    <script src="/scripts/scores.js" ></script>
-    <script src="./scripts/controller.js"></script>
-    <script src="./scripts/projectile.js"></script>
-    <script src="./scripts/enemy.js"></script>
-    <script src="./scripts/player.js"></script>
-    <script src="./scripts/game-loop.js"></script>
-    <script src="./scripts/script.js"></script>
-</body>
-
+        <!-- ------------------------------------------------------------------ -->
+        <script src="/scripts/scores.js"></script>
+        <script src="./scripts/controller.js"></script>
+        <script src="./scripts/projectile.js"></script>
+        <script src="./scripts/enemy.js"></script>
+        <script src="./scripts/player.js"></script>
+        <script src="./scripts/game-loop.js"></script>
+        <script src="./scripts/script.js"></script>
+    </body>
 </html>

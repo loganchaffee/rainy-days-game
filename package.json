@@ -1,25 +1,25 @@
 {
-  "name": "rainy-days-game",
-  "version": "1.0.0",
-  "description": "Space Invaders-type game built with javascript.",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/loganchaffee/rainy-days-game.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/loganchaffee/rainy-days-game/issues"
-  },
-  "homepage": "https://github.com/loganchaffee/rainy-days-game#readme",
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+    "name": "rainy-days-game",
+    "version": "1.0.0",
+    "description": "Space Invaders-type game built with javascript.",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/loganchaffee/rainy-days-game.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/loganchaffee/rainy-days-game/issues"
+    },
+    "homepage": "https://github.com/loganchaffee/rainy-days-game#readme",
+    "dependencies": {
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
 }
