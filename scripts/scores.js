@@ -1,12 +1,16 @@
 (async function main() {
-    const res = await fetch('/scores', { method: 'GET'})
+    const res = await fetch('/scores', { method: 'GET' });
 
-    const scores = await res.json()
+    const data = await res.json();
 
-    for (let i = 0; i < scores.length; i++) {
-        const element = scores[i];
-        
+    console.log(data);
+
+    for (let i = 0; i < data.length; i++) {
+        const score = data[i].score;
+
+        const initials = data[i].initials;
+
+        document.getElementById(`${i + 1}-score`).innerHTML = score;
+        document.getElementById(`${i + 1}-initials`).innerHTML = initials;
     }
-
-
-})()    
+})();
