@@ -69,7 +69,7 @@ function firingInterval(enemyProjectileVelocity, enemyProjectileFrequency) {
 firingInterval(enemyProjectileVelocity);
 
 // Checks and sets the Highscore
-function getHighScore() {
+function setHighScore() {
     if (localStorage.getItem('highScore') < score) {
         localStorage.setItem('highScore', score);
         gameOverHighScore.innerHTML = localStorage.getItem('highScore');
@@ -79,7 +79,7 @@ function getHighScore() {
         startHighScore.innerHTML = localStorage.getItem('highScore');
     }
 }
-getHighScore();
+setHighScore();
 
 // Class Instances -----------------------------------------------------------
 let player = new Player(canvas.width / 2 - 25, canvas.height - 75, 40, 50, 0, 0, true);
@@ -112,6 +112,7 @@ createEnemies(enemies);
 // Event Listeners-----------------------------------------------------------
 
 startGameBtn.addEventListener('click', () => {
+    document.getElementById('waveCount').innerHTML = 1;
     canvas.style.background = 'url(./resources/3BBK.gif), url(./resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg)';
     startMenu.style.display = 'none';
     ctx.clearRect(0, 0, 600, 600);

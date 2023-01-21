@@ -64,5 +64,27 @@ app.post('/scores', async (req, res) => {
     }
 });
 
+app.post('/check-high-score', async (req, res) => {
+    try {
+        const score = req.body.score;
+
+        const data = JSON.parse(await fs.readFile(__dirname + '/resources/high-scores.json'));
+
+        isHighScore = false;
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].score < score) {
+                isHighScore = true;
+                break;
+            }
+        }
+
+        res.status(200).json({ isHighScore });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+});
+
 // Server
 app.listen(3000, () => console.log('App listening on port 3000'));

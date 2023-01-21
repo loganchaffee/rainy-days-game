@@ -82,11 +82,54 @@ let animate = function () {
             cancelAnimationFrame(animationId);
             gameOverSound();
             gameOverMenu.style.display = '';
-            playerScore.innerHTML = score;
-            getHighScore();
-            score = 0;
             enemyProjectileVelocity = 6;
             enemyProjectileFrequency = 500;
+            setHighScore();
+            playerScore.innerHTML = score;
+            let finalScore = score;
+            score = 0;
+            document.getElementById('waveCount').innerHTML = 0;
+
+            (async () => {
+                const isHighScore = await checkForHighScore(finalScore);
+
+                if (isHighScore) {
+                    document.getElementById('initialContainer').style.display = 'block';
+
+                    async function setHighScore(score, initials) {
+                        try {
+                            const res = await fetch('/scores', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ score, initials }),
+                            });
+
+                            const data = await res.json();
+
+                            for (let i = 0; i < data.length; i++) {
+                                const score = data[i].score;
+
+                                const initials = data[i].initials;
+
+                                document.getElementById(`${i + 1}-score`).innerHTML = score;
+                                document.getElementById(`${i + 1}-initials`).innerHTML = initials;
+                            }
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+
+                    document.getElementById('submitBtn').onclick = () => {
+                        const initials = document.getElementById('initialsInput').value.toUpperCase();
+
+                        setHighScore(finalScore, initials);
+
+                        document.getElementById('initialsInput').value = '';
+
+                        document.getElementById('initialContainer').style.display = 'none';
+                    };
+                }
+            })();
         }
     });
     enemies.forEach((enemy) => {
@@ -118,7 +161,7 @@ let animate = function () {
             gameOverSound();
             gameOverMenu.style.display = '';
             playerScore.innerHTML = score;
-            getHighScore();
+            setHighScore();
             score = 0;
             enemyProjectileVelocity = 6;
             enemyProjectileFrequency = 500;
@@ -128,7 +171,7 @@ let animate = function () {
             gameOverSound();
             gameOverMenu.style.display = '';
             playerScore.innerHTML = score;
-            getHighScore();
+            setHighScore();
             score = 0;
             enemyProjectileVelocity = 6;
             enemyProjectileFrequency = 500;
@@ -142,5 +185,11 @@ let animate = function () {
         enemyProjectileFrequency = enemyProjectileFrequency / 1.5;
         clearInterval(enemyShootsInterval);
         firingInterval(enemyProjectileVelocity, enemyProjectileFrequency);
+
+        const lastWaveNumber = Number(document.getElementById('waveCount').innerHTML);
+
+        document.getElementById('waveCount').innerHTML = lastWaveNumber + 1;
     }
+
+    document.getElementById('scoreCount').innerHTML = score;
 };

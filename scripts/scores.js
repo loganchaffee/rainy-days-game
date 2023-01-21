@@ -1,9 +1,7 @@
-(async function main() {
+async function getInitialScores() {
     const res = await fetch('/scores', { method: 'GET' });
 
     const data = await res.json();
-
-    console.log(data);
 
     for (let i = 0; i < data.length; i++) {
         const score = data[i].score;
@@ -13,20 +11,21 @@
         document.getElementById(`${i + 1}-score`).innerHTML = score;
         document.getElementById(`${i + 1}-initials`).innerHTML = initials;
     }
-})();
+}
+getInitialScores();
 
-async function updateScores(score, initials) {
+async function checkForHighScore(score) {
     try {
-        const res = await fetch('/scores', {
+        const res = await fetch('/check-high-score', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ score, initials }),
+            body: JSON.stringify({ score }),
         });
 
         const data = await res.json();
+
+        return data.isHighScore;
     } catch (error) {
         console.log(error);
     }
 }
-
-updateScores(2549, 'LMC');

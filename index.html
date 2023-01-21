@@ -2,18 +2,25 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Rainy Days</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/styles/index.css" />
+        <script src="https://kit.fontawesome.com/827b9162ff.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        </style>
+
         <header>
             <div class="header">
                 <h1>Rainy Days</h1>
                 <audio controls loop id="music" src="./audio/rainydays.m4a"></audio>
-
+                <i class="fa-solid fa-volume"></i>
+                <i class="fa-regular fa-volume" style="color: white"></i>
                 <div class="stats">
                     <span>Wave: <span id="waveCount">0</span></span>
                     <span>Score: <span id="scoreCount">0</span></span>
@@ -26,70 +33,55 @@
                 <div class="wrapper">
                     <canvas width="550px" height="550px" style="background-image: url(/resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg)"></canvas>
 
-                    <div id="startMenu" class="start-menu">
-                        <h2 id="title">Let's Play</h2>
-                        <div class="start-menu__item">
-                            <button id="startGameBtn" class="menu-button">Start Game</button>
-                        </div>
-                        <div class="start-menu__item">
-                            <button id="howToBtn" class="menu-button">How to Play</button>
-                        </div>
-                        <div class="start-menu__item">
-                            <h1>Your High Score:</h1>
-                        </div>
-                        <div class="start-menu__item">
-                            <h2 id="startHighScore"></h2>
-                        </div>
+                    <div id="startMenu" class="menu">
+                        <h2 class="menu__title">Let's Play</h2>
+
+                        <button id="startGameBtn" class="menu-button">Start Game</button>
+
+                        <button id="howToBtn" class="menu-button">How to Play</button>
+                        <h2 class="menu__title">Your High Score:</h2>
+                        <h2 id="startHighScore" class="menu__score"></h2>
                     </div>
 
-                    <div id="gameOverMenu" class="game-over-menu">
-                        <div class="game-over-menu__item">
-                            <h2 id="game-over-text">Game Over</h2>
-                            <h1 class="start-menu__item__score-header">Your Score:</h1>
-                            <h3 id="playerScore" class="start-menu__item__score"></h3>
+                    <div id="gameOverMenu" class="menu">
+                        <h2 id="game-over-text" class="menu__title">Game Over</h2>
+                        <h2 class="menu__title">Your Score:</h2>
+
+                        <h3 class="menu__score" id="playerScore"></h3>
+
+                        <h2 class="menu__title">Your High Score:</h2>
+                        <h2 class="menu__score" id="gameOverHighScore"></h2>
+
+                        <div id="initialContainer" class="initials-container" style="display: none">
+                            <div>
+                                <input type="text" maxlength="3" id="initialsInput" placeholder="Initials" />
+                                <button id="submitBtn">Submit</button>
+                            </div>
                         </div>
-                        <div class="game-over-menu__item">
-                            <h1>Your High Score:</h1>
-                            <h3 id="gameOverHighScore"></h3>
-                        </div>
-                        <div class="game-over-menu__item">
-                            <button id="playAgainBtn" class="game-over-menu__item__btn">Play Again</button>
-                        </div>
-                        <div class="game-over-menu__item">
-                            <button id="gameOverMenuBackBtn" class="game-over-menu__item__btn">Back Home</button>
-                        </div>
+
+                        <button id="playAgainBtn" class="game-over-menu__item__btn">Play Again</button>
+                        <button id="gameOverMenuBackBtn" class="game-over-menu__item__btn">Back Home</button>
                     </div>
 
-                    <div id="howToMenu" class="how-to-menu">
-                        <div class="how-to-menu__header">
-                            <h1>Objective</h1>
-                        </div>
-                        <div class="how-to-menu-body1">
-                            <p>
-                                Once again the clouds have come ruin your day. Don't let them! Dodge their rain drops and shoot them with your sunshine orbs to take them out. Bring back the sunshine!
-                            </p>
-                        </div>
-                        <div class="how-to-menu__header">
-                            <h1>Controls</h1>
-                        </div>
-                        <div class="how-to-menu-body2">
-                            <ul>
-                                <li>Left: <b>A</b></li>
-                                <li>Right: <b>D</b></li>
-                                <li>Jump: <b>Space</b></li>
-                                <li>Shoot: <b>Left Click</b></li>
-                            </ul>
-                        </div>
-                        <div class="how-to-menu-body2">
-                            <button id="howToMenuBackBtn" class="menu-button">Back</button>
-                        </div>
+                    <div id="howToMenu" class="menu">
+                        <h2 class="menu__title">Objective</h2>
+                        <p>Once again the clouds have come ruin your day. Don't let them! Dodge their rain drops and shoot them with your sunshine orbs to take them out. Bring back the sunshine!</p>
+                        <h2 class="menu__title">Controls</h2>
+                        <ul>
+                            <li>Left: A</li>
+                            <li>Right: D</li>
+                            <li>Jump: Space</li>
+                            <li>Shoot: Left Click</li>
+                        </ul>
+                        <button id="howToMenuBackBtn" class="menu-button">Back</button>
                     </div>
                 </div>
+
                 <div class="leader-board">
-                    <h2>Rainy Days Top Players</h2>
+                    <h2>Top Players</h2>
                     <table id="players">
                         <tr>
-                            <th><img src="/resources/1DFCC4D1-C2A5-4E6E-AB06-E295B8FF4ABF_1_105_c.jpeg" /></th>
+                            <th>--</th>
                             <th>Score</th>
                             <th>Initial</th>
                         </tr>

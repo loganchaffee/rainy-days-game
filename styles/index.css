@@ -1,5 +1,11 @@
+@font-face {
+    font-family: pixelFont;
+    src: url(/styles/retro.ttf);
+}
+
 * {
-    font-family: 'Play', sans-serif;
+    font-family: pixelFont, monospace;
+    box-sizing: border-box;
 }
 
 body {
@@ -7,8 +13,8 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='321' height='321' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23361264' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23361264'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
     box-sizing: border-box;
     background-color: #170330;
-    /* background-color: black;    */
     margin: 0;
+    font-weight: 300;
 }
 
 header {
@@ -26,12 +32,13 @@ header {
     display: flex;
     justify-content: space-between;
     color: white;
+    align-items: center;
 }
 
 .header > h1 {
     margin: 0;
     color: white;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .stats {
@@ -40,11 +47,11 @@ header {
     display: flex;
     align-items: center;
     background-color: #170330;
+    padding: 15px 10px;
 }
 
 .stats > span {
     margin-left: 20px;
-    font-size: 30px;
 }
 
 main {
@@ -54,6 +61,8 @@ main {
     align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 50px;
+    padding: 0 10px;
 }
 
 .wrapper {
@@ -97,14 +106,7 @@ img {
     display: none;
 }
 
-/* Start Menu */
-.start-menu,
-.game-over-menu,
-.how-to-menu {
-    border: 1px solid #361264 !important;
-}
-
-.start-menu {
+.menu {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -112,276 +114,96 @@ img {
     background: #170330;
     width: 350px;
     height: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-content: space-between;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#title {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    color: white;
-    font-size: 50px;
-    margin: 0;
-}
-
-.start-menu__item {
-    width: 100%;
-    height: 10%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.start-menu__item h1 {
-    background: #361264;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    color: white;
-    padding: 4px 0 4px 0;
-    margin: 40px 0;
-}
-
-.start-menu__item h2 {
-    color: white;
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    margin-top: 0;
-}
-
-.menu-button {
-    cursor: pointer;
-    background: rgb(54, 18, 100);
-    text-decoration: none;
-    border: none;
-    outline: none;
-    width: 70%;
-    height: 100%;
-    color: white;
-    font-size: 20px;
-    border-right: 5px solid #170330;
-    border-bottom: 5px solid #170330;
-}
-
-/* How To Menu */
-
-.how-to-menu {
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #170330;
-    width: 350px;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
     color: white;
+    border: 1px solid #3e1574;
 }
 
-.how-to-menu__header {
-    background: rgb(54, 18, 100);
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+.menu__title {
+    background: #361264;
     color: white;
-}
-
-.how-to-menu-body1 {
-    width: 90%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.how-to-menu-body2 {
-    width: 90%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-}
-.how-to-menu-body2 ul {
     width: 100%;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 0;
+    height: fit-content;
+    margin: 20px 0;
+}
+
+.menu__score {
+    font-size: 20px;
+    text-align: center;
+}
+
+.menu button {
+    background: #361264;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    display: block;
+    margin-bottom: 20px;
+    width: 200px;
+    margin-left: 75px;
+}
+
+.menu button:hover {
+    background-color: #3e1574;
+    cursor: pointer;
+}
+
+.menu p {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: start;
+    padding: 10px;
+}
+
+.menu ul {
     list-style: none;
 }
 
-.how-to-menu-body2 ul li {
-    margin: 8px 0px;
+.menu li {
+    font-family: monospace;
+    text-align: start;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
-#howToMenuBackBtn {
-    width: 50%;
+.initials-container > div {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
-/* Login Menu */
-
-.login {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.initials-container input {
+    width: 100px;
+    flex: 1;
     background: #170330;
-    width: 350px;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.login__item {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.login__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.login__form h1 {
-    background: rgb(54, 18, 100);
-    color: white;
-    width: 100%;
-    text-align: center;
-    padding: 5px 0;
-}
-
-.login__form__item {
-    width: 80%;
-    margin: 10px 0;
-}
-
-#loginBackBtn {
-    cursor: pointer;
-    background: rgb(54, 18, 100);
-    text-decoration: none;
-    border: none;
-    outline: none;
-    width: 50%;
-    height: 25px;
-    color: white;
-    font-size: 20px;
-    margin-top: 60px;
-    justify-self: center;
-}
-
-/* Game Over Menu */
-
-.game-over-menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #170330;
-    width: 350px;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.game-over-menu__item {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    border: 5px solid #361264;
     color: white;
 }
 
-.game-over-menu__item h1 {
-    background: rgb(54, 18, 100);
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.initials-container button {
+    width: fit-content;
     margin: 0;
-    color: white;
+    background-color: #170330;
+    border: 5px solid #361264;
 }
 
-.game-over-menu__item h3 {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    margin: 20px;
-}
+/* Game */
 
-.game-over-menu__item__btn {
-    cursor: pointer;
-    background: rgb(54, 18, 100);
-    text-decoration: none;
-    border: none;
-    outline: none;
-    width: 50%;
-    height: 25px;
-    color: white;
-    font-size: 20px;
-    margin: 5px 0;
-    align-self: center;
-}
-
-#game-over-text {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    color: white;
-    font-size: 50px;
-    margin: 5px 0 20px 0;
-}
-
-#music {
-    display: none;
-}
-
-/* Leader board */
 .leader-board {
-    min-width: 350px;
+    flex: 1;
+    max-width: 550px;
 }
 
 .leader-board > h2 {
     text-align: center;
-    font-size: 30px;
     margin: 0 0 20px 0;
     color: #5dc1ffec;
+    font-size: 20px;
 }
 
 #players {
@@ -398,16 +220,13 @@ img {
     padding: 8px;
     text-align: center;
     color: #5dc1ffec;
-    font-size: 30px;
-}
-
-#players tr:nth-child(even) {
-}
-
-#players tr:hover {
 }
 
 #players th {
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+audio {
+    display: none;
 }
