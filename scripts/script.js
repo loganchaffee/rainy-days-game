@@ -36,21 +36,31 @@ let enemyProjectiles = [];
 let enemyProjectileVelocity = 6;
 let enemyProjectileFrequency = 500;
 
-let music = document.getElementById('music');
-
 let shootSound = function () {
+    isMuted = document.getElementById('volumeOn').style.display === 'none';
+    if (isMuted) return;
+
     let sound = new Audio('audio/shoot.wav');
     sound.play();
 };
 let jumpSound = function () {
+    isMuted = document.getElementById('volumeOn').style.display === 'none';
+    if (isMuted) return;
+
     let sound = new Audio('audio/jump.wav');
     sound.play();
 };
 let punchSound = function () {
+    isMuted = document.getElementById('volumeOn').style.display === 'none';
+    if (isMuted) return;
+
     let sound = new Audio('audio/punch.wav');
     sound.play();
 };
 let gameOverSound = function () {
+    isMuted = document.getElementById('volumeOn').style.display === 'none';
+    if (isMuted) return;
+
     let sound = new Audio('audio/gameover.wav');
     sound.play();
 };
@@ -62,7 +72,6 @@ function firingInterval(enemyProjectileVelocity, enemyProjectileFrequency) {
     enemyShootsInterval = window.setInterval(function enemyShoots(enemy) {
         enemy = enemies[Math.floor(Math.random() * enemies.length)];
         let projectile = new EnemyProjectile(enemy.x, enemy.y + 20, 6, enemyProjectileVelocity);
-        console.log(enemyProjectileVelocity);
         enemyProjectiles.push(projectile);
     }, enemyProjectileFrequency);
 }
@@ -72,10 +81,10 @@ firingInterval(enemyProjectileVelocity);
 function setHighScore() {
     if (localStorage.getItem('highScore') < score) {
         localStorage.setItem('highScore', score);
-        gameOverHighScore.innerHTML = localStorage.getItem('highScore');
+        // gameOverHighScore.innerHTML = localStorage.getItem('highScore');
         startHighScore.innerHTML = localStorage.getItem('highScore');
     } else {
-        gameOverHighScore.innerHTML = localStorage.getItem('highScore');
+        // gameOverHighScore.innerHTML = localStorage.getItem('highScore');
         startHighScore.innerHTML = localStorage.getItem('highScore');
     }
 }
@@ -121,7 +130,6 @@ startGameBtn.addEventListener('click', () => {
     createEnemies(enemies);
     animate();
     firingInterval(enemyProjectileVelocity, enemyProjectileFrequency);
-    music.play();
 });
 
 howToBtn.addEventListener('click', () => {

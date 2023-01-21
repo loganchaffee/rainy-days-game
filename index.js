@@ -48,8 +48,6 @@ app.post('/scores', async (req, res) => {
 
         for (let i = 0; i < data.length; i++) {
             if (data[i].score < entry.score) {
-                console.log('writing new scores');
-
                 data.splice(i, 0, entry);
                 data.pop();
                 await fs.writeFile(__dirname + '/resources/high-scores.json', JSON.stringify(data));

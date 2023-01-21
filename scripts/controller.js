@@ -15,7 +15,25 @@ let controller = {
                 controller.right = keyState;
                 break;
             case ' ':
+                if (document.getElementById('waveCount').innerHTML !== '0') {
+                    event.preventDefault();
+                }
+
                 controller.up = keyState;
+                break;
+            case 'ArrowUp':
+                event.preventDefault();
+                let firstShot = {};
+                if (playersFirstShot.length < 2) {
+                    playersFirstShot.push(firstShot);
+                }
+                if (playersFirstShot.length >= 2) {
+                    let projectile = new Projectile(player.x + 15, player.y, 6, -10);
+                    if (projectiles.length < 1) {
+                        projectiles.push(projectile);
+                        shootSound();
+                    }
+                }
                 break;
             case 's':
                 controller.down = keyState;
@@ -40,4 +58,4 @@ let controller = {
 // Event Listeners
 window.addEventListener('keydown', controller.keyEventListener);
 window.addEventListener('keyup', controller.keyEventListener);
-window.addEventListener('click', controller.clickEventListener);
+// window.addEventListener('click', controller.clickEventListener);

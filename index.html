@@ -18,9 +18,10 @@
         <header>
             <div class="header">
                 <h1>Rainy Days</h1>
-                <audio controls loop id="music" src="./audio/rainydays.m4a"></audio>
-                <i class="fa-solid fa-volume"></i>
-                <i class="fa-regular fa-volume" style="color: white"></i>
+                <div class="volume-container">
+                    <i class="fa-solid fa-volume-high" id="volumeOn"></i>
+                    <i class="fa-solid fa-volume-xmark" id="volumeOff"></i>
+                </div>
                 <div class="stats">
                     <span>Wave: <span id="waveCount">0</span></span>
                     <span>Score: <span id="scoreCount">0</span></span>
@@ -49,8 +50,8 @@
 
                         <h3 class="menu__score" id="playerScore"></h3>
 
-                        <h2 class="menu__title">Your High Score:</h2>
-                        <h2 class="menu__score" id="gameOverHighScore"></h2>
+                        <!-- <h2 class="menu__title">Your High Score:</h2> -->
+                        <!-- <h2 class="menu__score" id="gameOverHighScore"></h2> -->
 
                         <div id="initialContainer" class="initials-container" style="display: none">
                             <div>
@@ -71,7 +72,7 @@
                             <li>Left: A</li>
                             <li>Right: D</li>
                             <li>Jump: Space</li>
-                            <li>Shoot: Left Click</li>
+                            <li>Shoot: Up Arrow</li>
                         </ul>
                         <button id="howToMenuBackBtn" class="menu-button">Back</button>
                     </div>
@@ -125,14 +126,16 @@
         <audio id="gameover" src="./audio/gameover.wav"></audio>
         <audio id="punch" src="./audio/punch.wav"></audio>
         <audio id="jump" src="./audio/jump.wav"></audio>
+        <audio controls loop id="music" src="./audio/rainydays.m4a"></audio>
 
         <!-- ------------------------------------------------------------------ -->
+        <script src="/scripts/volume.js"></script>
         <script src="/scripts/scores.js"></script>
-        <script src="./scripts/controller.js"></script>
-        <script src="./scripts/projectile.js"></script>
-        <script src="./scripts/enemy.js"></script>
-        <script src="./scripts/player.js"></script>
-        <script src="./scripts/game-loop.js"></script>
+        <script src="/scripts/controller.js"></script>
+        <script src="/scripts/projectile.js"></script>
+        <script src="/scripts/enemy.js"></script>
+        <script src="/scripts/player.js"></script>
+        <script src="/scripts/game-loop.js"></script>
         <script src="./scripts/script.js"></script>
     </body>
 </html>
